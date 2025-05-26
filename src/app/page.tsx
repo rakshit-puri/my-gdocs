@@ -1,10 +1,10 @@
-import React from 'react';
-import {Button} from '@/components/ui/button';
-export default function Home() {
+import Link from 'next/link';
+const Home = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <p>Hello World!</p>
-      <Button className="ml-4">Click Me</Button>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      Click <Link href="/documents/1512" className="text-blue-500 hover:underline">here</Link> to go to document id.
     </div>
   );
 }
+
+export default Home;
