@@ -51,7 +51,16 @@ export const Editor = () => {
 			},
 		},
 		extensions: [
-			StarterKit,
+			StarterKit.configure({
+				bulletList: {
+					keepMarks: true,
+					keepAttributes: false,
+				},
+				orderedList: {
+					keepMarks: true,
+					keepAttributes: false,
+				},
+			}),
 			ImageResize,
 			Link.configure({
 				openOnClick: false,
@@ -94,7 +103,29 @@ export const Editor = () => {
             </tr>
           </tbody>
         </table>
-					<p>Welcome to the editor! You can start typing here.</p>`,
+					<p>Welcome to the editor! You can start typing here.</p>
+					
+					<ul>
+  <li>Level 1 - Bullet
+    <ol>
+      <li>Level 2 - Ordered
+        <ul>
+          <li>Level 3 - Bullet
+            <ol>
+              <li>Level 4 - Ordered
+                <ul>
+                  <li>Level 5 - Bullet</li>
+                </ul>
+              </li>
+            </ol>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+`,
 	});
 	return (
 		<div className="size-full overflow-x-auto bg-[#F9FBFD] px-4 print:p-0 print:bg-white print:overflow-visible">

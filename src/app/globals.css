@@ -97,28 +97,70 @@ body {
 		}
 	}
 	/* List styles */
+	/* Base padding and margin for all ul and ol */
 	ul,
 	ol {
 		padding: 0 1rem;
 		margin: 1.25rem 1rem 1.25rem 0.4rem;
 	}
 
-	ul li {
+	/* Level 1 */
+	ul {
 		list-style-type: disc;
-
-		p {
-			margin-top: 0.25em;
-			margin-bottom: 0.25em;
-		}
 	}
 
-	ol li {
+	ol {
 		list-style-type: decimal;
+	}
 
-		p {
-			margin-top: 0.25em;
-			margin-bottom: 0.25em;
-		}
+	/* Level 2 */
+	ul ul {
+		list-style-type: circle;
+	}
+
+	ol ol {
+		list-style-type: lower-alpha;
+	}
+
+	/* Level 3 */
+	ul ul ul {
+		list-style-type: square;
+	}
+
+	ol ol ol {
+		list-style-type: lower-roman;
+	}
+
+	/* Level 4 */
+	ul ul ul ul {
+		list-style-type: disc;
+	}
+
+	ol ol ol ol {
+		list-style-type: upper-alpha;
+	}
+
+	/* Level 5 */
+	ul ul ul ul ul {
+		list-style-type: circle;
+	}
+
+	ol ol ol ol ol {
+		list-style-type: upper-roman;
+	}
+
+	/* li styling for ul and ol */
+	ul li,
+	ol li {
+		/* no default list-style-type here to avoid override, 
+     it’s set on ul/ol levels above */
+	}
+
+	/* Paragraph inside li for both ul and ol */
+	ul li p,
+	ol li p {
+		margin-top: 0.25em;
+		margin-bottom: 0.25em;
 	}
 
 	/* Task list specific styles */
@@ -126,29 +168,30 @@ body {
 		list-style: none;
 		margin-left: 0;
 		padding: 0;
+	}
 
-		li {
-			align-items: flex-start;
-			display: flex;
+	ul[data-type="taskList"] li {
+		display: flex;
+		align-items: flex-start;
+	}
 
-			> label {
-				flex: 0 0 auto;
-				margin-right: 0.5rem;
-				user-select: none;
-			}
+	ul[data-type="taskList"] > li > label {
+		flex: 0 0 auto;
+		margin-right: 0.5rem;
+		user-select: none;
+	}
 
-			> div {
-				flex: 1 1 auto;
-			}
-		}
+	ul[data-type="taskList"] > li > div {
+		flex: 1 1 auto;
+	}
 
-		input[type="checkbox"] {
-			cursor: pointer;
-		}
+	ul[data-type="taskList"] input[type="checkbox"] {
+		cursor: pointer;
+	}
 
-		ul[data-type="taskList"] {
-			margin: 0;
-		}
+	/* Reset nested task lists margin */
+	ul[data-type="taskList"] ul[data-type="taskList"] {
+		margin: 0;
 	}
 
 	/* Heading styles */
