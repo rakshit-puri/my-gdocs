@@ -1,5 +1,6 @@
 "use client";
 
+import { type LucideIcon } from "lucide-react";
 import { useEditorStore } from "@/store/use-editor-store";
 import LinkButton from "@/components/toolbar/link-button";
 import ImageButton from "@/components/toolbar/image-button";
@@ -32,7 +33,7 @@ export const Toolbar = () => {
 
 	type ToolbarItem = {
 		label: string;
-		icon: import("lucide-react").LucideIcon;
+		icon: LucideIcon;
 		onClick: () => void;
 		isActive?: boolean;
 	};
