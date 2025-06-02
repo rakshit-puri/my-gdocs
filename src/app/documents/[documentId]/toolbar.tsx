@@ -2,7 +2,6 @@
 
 import { cn } from "@/lib/utils";
 import {
-	CodeIcon,
 	LucideIcon,
 	MessageSquarePlusIcon,
 	UndoIcon,
