@@ -1,15 +1,15 @@
 "use client";
 
 import { useEditorStore } from "@/store/use-editor-store";
-import LinkButton from "@/components/toolbar/link-button";
-import ImageButton from "@/components/toolbar/image-button";
-import AlignButton from "@/components/toolbar/align-button";
-import ListButton from "@/components/toolbar/list-button";
-import TextColorButton from "@/components/toolbar/text-color-button";
-import FontFamilyButton from "@/components/toolbar/font-family-button";
-import HeadingLevelButton from "@/components/toolbar/heading-level-button";
-import HighlightColorButton from "@/components/toolbar/highlight-color-button";
-import ToolbarButton from "@/components/toolbar/toolbar-button";
+import LinkButton from "@/components/toolbar/button/link";
+import ImageButton from "@/components/toolbar/button/image";
+import AlignButton from "@/components/toolbar/button/align";
+import ListButton from "@/components/toolbar/button/list";
+import TextColorButton from "@/components/toolbar/button/text-color";
+import FontFamilyButton from "@/components/toolbar/button/font-family";
+import HeadingLevelButton from "@/components/toolbar/button/heading-level";
+import HighlightColorButton from "@/components/toolbar/button/highlight-color";
+import ToolbarButton from "@/components/toolbar/button/toolbar-button";
 import { Separator } from "@/components/ui/separator";
 import {
 	type LucideIcon,
@@ -24,6 +24,9 @@ import {
 	ListTodoIcon,
 	RemoveFormattingIcon,
 } from "lucide-react";
+import FontSizeButton from "@/components/toolbar/button/font-size";
+import { LineHeight } from "@/extensions/line-height";
+import LineHeightButton from "@/components/toolbar/button/line-height";
 
 export const Toolbar = () => {
 	const { editor } = useEditorStore();
@@ -107,11 +110,11 @@ export const Toolbar = () => {
 				<ToolbarButton key={item.label} {...item} />
 			))}
 			<Separator orientation="vertical" className="h-6 bg-neutral-300" />
-			<FontFamilyButton />
-			<Separator orientation="vertical" className="h-6 bg-neutral-300" />
 			<HeadingLevelButton />
 			<Separator orientation="vertical" className="h-6 bg-neutral-300" />
-			{/* TODO: Font Size */}
+			<FontFamilyButton />
+			<Separator orientation="vertical" className="h-6 bg-neutral-300" />
+			<FontSizeButton />
 			<Separator orientation="vertical" className="h-6 bg-neutral-300" />
 			<TextColorButton />
 			<HighlightColorButton />
@@ -119,7 +122,7 @@ export const Toolbar = () => {
 			<LinkButton />
 			<ImageButton />
 			<AlignButton />
-			{/* TODO: Line Height */}
+			<LineHeightButton />
 			<ListButton />
 			<Separator orientation="vertical" className="h-6 bg-neutral-300" />
 			{toolbarSections[1].map((item) => (
