@@ -18,10 +18,10 @@ import {
 import {
 	LucideIcon,
 	MessageSquarePlusIcon,
-	UndoIcon,
-	RedoIcon,
+	Undo2Icon,
+	Redo2Icon,
 	BoldIcon,
-	LinkIcon,
+	Link2Icon,
 	ItalicIcon,
 	UnderlineIcon,
 	StrikethroughIcon,
@@ -122,7 +122,7 @@ const LinkButton = () => {
 		<DropdownMenu onOpenChange={(open) => open && setValue(editor?.getAttributes("link").href || "")}>
 			<DropdownMenuTrigger asChild>
 				<button className="h-7 min-w-7 shrink-0 flex items-center justify-center rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm">
-					<LinkIcon className="size-4" />
+					<Link2Icon className="size-4" />
 				</button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent className="p-2.5 flex items-center gap-x-2">
@@ -145,7 +145,7 @@ const TextColorButton = () => {
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
 				<button className="h-7 min-w-7 shrink-0 flex flex-col items-center justify-center rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm">
-					<span className="truncate">A</span>
+					<span className="truncate size-4">A</span>
 					<div className="h-0.5 w-full" style={{ background: value }} />
 				</button>
 			</DropdownMenuTrigger>
@@ -159,7 +159,7 @@ const TextColorButton = () => {
 const HighlightColorButton = () => {
 	const { editor } = useEditorStore();
 
-	const value = editor?.getAttributes("highlight")?.color || "#FFFF00"; // default yellow highlight
+	const value = editor?.getAttributes("highlight")?.color || "";
 
 	const onChange = (color: ColorResult) => {
 		editor?.chain().focus().setHighlight({ color: color.hex }).run();
@@ -168,8 +168,9 @@ const HighlightColorButton = () => {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<button className="h-7 min-w-7 shrink-0 flex items-center justify-center rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm">
+				<button className="h-7 min-w-7 shrink-0 flex flex-col items-center justify-center rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm">
 					<HighlighterIcon className="size-4" />
+					<div className="h-0.5 w-full" style={{ background: value }} />
 				</button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent className="p-0">
@@ -307,12 +308,12 @@ export const Toolbar = () => {
 		[
 			{
 				label: "Undo",
-				icon: UndoIcon,
+				icon: Undo2Icon,
 				onClick: () => editor?.chain().focus().undo().run(),
 			},
 			{
 				label: "Redo",
-				icon: RedoIcon,
+				icon: Redo2Icon,
 				onClick: () => editor?.chain().focus().redo().run(),
 			},
 			{
