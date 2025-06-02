@@ -12,7 +12,6 @@ import HighlightColorButton from "@/components/toolbar/highlight-color-button";
 import ToolbarButton from "@/components/toolbar/toolbar-button";
 import { Separator } from "@/components/ui/separator";
 import {
-	LucideIcon,
 	MessageSquarePlusIcon,
 	Undo2Icon,
 	Redo2Icon,
@@ -28,22 +27,27 @@ import {
 export const Toolbar = () => {
 	const { editor } = useEditorStore();
 
-	const sections: {
+	// Helper to avoid repeating editor?.chain().focus()
+	const chain = () => editor?.chain().focus();
+
+	type ToolbarItem = {
 		label: string;
-		icon: LucideIcon;
+		icon: import("lucide-react").LucideIcon;
 		onClick: () => void;
 		isActive?: boolean;
-	}[][] = [
+	};
+
+	const toolbarSections: ToolbarItem[][] = [
 		[
 			{
 				label: "Undo",
 				icon: Undo2Icon,
-				onClick: () => editor?.chain().focus().undo().run(),
+				onClick: () => chain()?.undo().run(),
 			},
 			{
 				label: "Redo",
 				icon: Redo2Icon,
-				onClick: () => editor?.chain().focus().redo().run(),
+				onClick: () => chain()?.redo().run(),
 			},
 			{
 				label: "Print",
@@ -55,25 +59,25 @@ export const Toolbar = () => {
 			{
 				label: "Bold",
 				icon: BoldIcon,
-				onClick: () => editor?.chain().focus().toggleBold().run(),
+				onClick: () => chain()?.toggleBold().run(),
 				isActive: editor?.isActive("bold"),
 			},
 			{
 				label: "Italic",
 				icon: ItalicIcon,
-				onClick: () => editor?.chain().focus().toggleItalic().run(),
+				onClick: () => chain()?.toggleItalic().run(),
 				isActive: editor?.isActive("italic"),
 			},
 			{
 				label: "Underline",
 				icon: UnderlineIcon,
-				onClick: () => editor?.chain().focus().toggleUnderline().run(),
+				onClick: () => chain()?.toggleUnderline().run(),
 				isActive: editor?.isActive("underline"),
 			},
 			{
 				label: "Strikethrough",
 				icon: StrikethroughIcon,
-				onClick: () => editor?.chain().focus().toggleStrike().run(),
+				onClick: () => chain()?.toggleStrike().run(),
 				isActive: editor?.isActive("strike"),
 			},
 		],
@@ -81,7 +85,7 @@ export const Toolbar = () => {
 			{
 				label: "Task List",
 				icon: ListTodoIcon,
-				onClick: () => editor?.chain().focus().toggleTaskList().run(),
+				onClick: () => chain()?.toggleTaskList().run(),
 				isActive: editor?.isActive("taskList"),
 			},
 			{
@@ -93,14 +97,15 @@ export const Toolbar = () => {
 			{
 				label: "Remove Formatting",
 				icon: RemoveFormattingIcon,
-				onClick: () => editor?.chain().focus().unsetAllMarks().run(),
+				onClick: () => chain()?.unsetAllMarks().run(),
 			},
 		],
 	];
+
 	return (
 		<div className="bg-[#F1F4F9] px-2.5 py-0.5 rounded-[24px] min-h-[40px] flex items-center gap-x-0.5 overflow-auto">
-			{sections[0].map((item) => (
-				<ToolbarButton key={item.label} onClick={item.onClick} isActive={item.isActive} icon={item.icon} />
+			{toolbarSections[0].map((item) => (
+				<ToolbarButton key={item.label} {...item} />
 			))}
 			<Separator orientation="vertical" className="h-6 bg-neutral-300" />
 			<FontFamilyButton />
@@ -118,12 +123,12 @@ export const Toolbar = () => {
 			{/* TODO: Line Height */}
 			<ListButton />
 			<Separator orientation="vertical" className="h-6 bg-neutral-300" />
-			{sections[1].map((item) => (
-				<ToolbarButton key={item.label} onClick={item.onClick} isActive={item.isActive} icon={item.icon} />
+			{toolbarSections[1].map((item) => (
+				<ToolbarButton key={item.label} {...item} />
 			))}
 			<Separator orientation="vertical" className="h-6 bg-neutral-300" />
-			{sections[2].map((item) => (
-				<ToolbarButton key={item.label} onClick={item.onClick} isActive={item.isActive} icon={item.icon} />
+			{toolbarSections[2].map((item) => (
+				<ToolbarButton key={item.label} {...item} />
 			))}
 		</div>
 	);
