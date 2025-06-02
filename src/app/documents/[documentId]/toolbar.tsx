@@ -1,6 +1,5 @@
 "use client";
 
-import { type LucideIcon } from "lucide-react";
 import { useEditorStore } from "@/store/use-editor-store";
 import LinkButton from "@/components/toolbar/link-button";
 import ImageButton from "@/components/toolbar/image-button";
@@ -13,6 +12,7 @@ import HighlightColorButton from "@/components/toolbar/highlight-color-button";
 import ToolbarButton from "@/components/toolbar/toolbar-button";
 import { Separator } from "@/components/ui/separator";
 import {
+	type LucideIcon,
 	MessageSquarePlusIcon,
 	Undo2Icon,
 	Redo2Icon,
@@ -31,14 +31,12 @@ export const Toolbar = () => {
 	// Helper to avoid repeating editor?.chain().focus()
 	const chain = () => editor?.chain().focus();
 
-	type ToolbarItem = {
+	const toolbarSections: {
 		label: string;
 		icon: LucideIcon;
 		onClick: () => void;
 		isActive?: boolean;
-	};
-
-	const toolbarSections: ToolbarItem[][] = [
+	}[][] = [
 		[
 			{
 				label: "Undo",
