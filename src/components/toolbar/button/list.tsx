@@ -7,7 +7,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ListIcon, ListOrderedIcon, CornerDownRight, CornerUpLeft, ChevronDownIcon } from "lucide-react";
+import { ListIcon, ListOrderedIcon, CornerDownRight, CornerUpLeft } from "lucide-react";
 
 const ListButton = () => {
 	const { editor } = useEditorStore();
@@ -87,7 +87,6 @@ const ListButton = () => {
 			<DropdownMenuTrigger asChild>
 				<button className="h-7 min-w-7 shrink-0 flex items-center justify-between rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm">
 					<ListIcon className="size-4" />
-					<ChevronDownIcon className="size-3 ml-2 shrink-0" />
 				</button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent className="p-1 flex flex-col gap-y-1">

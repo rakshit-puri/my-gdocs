@@ -7,7 +7,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { AlignLeftIcon, AlignCenterIcon, AlignRightIcon, AlignJustifyIcon, ChevronDownIcon } from "lucide-react";
+import { AlignLeftIcon, AlignCenterIcon, AlignRightIcon, AlignJustifyIcon } from "lucide-react";
 
 const AlignButton = () => {
 	const { editor } = useEditorStore();
@@ -45,7 +45,6 @@ const AlignButton = () => {
 				<button className="h-7 min-w-7 shrink-0 flex items-center justify-between rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm">
 					{/* TODO: Change this icon when testAlign updates */}
 					<AlignLeftIcon className="size-4" />
-					<ChevronDownIcon className="size-3 ml-2 shrink-0" />
 				</button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent className="p-1 flex flex-col gap-y-1">

@@ -17,6 +17,8 @@ import { Underline } from "@tiptap/extension-underline";
 import { useEditor, EditorContent } from "@tiptap/react";
 import { useEditorStore } from "@/store/use-editor-store";
 import { ResizableTable } from "@/components/resizable-table";
+import { FontSize } from "@/extensions/font-size";
+import { LineHeight } from "@/extensions/line-height";
 
 export const Editor = () => {
 	const { setEditor } = useEditorStore();
@@ -62,22 +64,16 @@ export const Editor = () => {
 				},
 			}),
 			ImageResize,
-			Link.configure({
-				openOnClick: false,
-				autolink: true,
-				defaultProtocol: "https",
-			}),
 			TextStyle,
-			TextAlign.configure({
-				types: ["heading", "paragraph"],
-			}),
 			Color,
 			Underline,
 			FontFamily,
 			TableRow,
 			TableCell,
 			TableHeader,
+			FontSize,
 			TaskList,
+
 			TaskItem.configure({
 				nested: true,
 			}),
@@ -87,45 +83,17 @@ export const Editor = () => {
 			Highlight.configure({
 				multicolor: true,
 			}),
+			TextAlign.configure({
+				types: ["heading", "paragraph"],
+			}),
+			Link.configure({
+				openOnClick: false,
+				autolink: true,
+				defaultProtocol: "https",
+			}),
+			LineHeight,
 		],
-		content: `
-        <table>
-          <tbody>
-            <tr>
-              <th>Name</th>
-              <th colspan="3">Description</th>
-            </tr>
-            <tr>
-              <td>Cyndi Lauper</td>
-              <td>Singer</td>
-              <td>Songwriter</td>
-              <td>Actress</td>
-            </tr>
-          </tbody>
-        </table>
-					<p>Welcome to the editor! You can start typing here.</p>
-					
-					<ul>
-  <li>Level 1 - Bullet
-    <ol>
-      <li>Level 2 - Ordered
-        <ul>
-          <li>Level 3 - Bullet
-            <ol>
-              <li>Level 4 - Ordered
-                <ul>
-                  <li>Level 5 - Bullet</li>
-                </ul>
-              </li>
-            </ol>
-          </li>
-        </ul>
-      </li>
-    </ol>
-  </li>
-</ul>
-
-`,
+		content: "",
 	});
 	return (
 		<div className="size-full overflow-x-auto bg-[#F9FBFD] px-4 print:p-0 print:bg-white print:overflow-visible">
