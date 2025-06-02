@@ -1,6 +1,10 @@
 "use client";
 
 import StarterKit from "@tiptap/starter-kit";
+import { FontFamily } from "@tiptap/extension-font-family";
+import { TextStyle } from "@tiptap/extension-text-style";
+import { Color } from "@tiptap/extension-color";
+import Highlight from "@tiptap/extension-highlight";
 import TaskList from "@tiptap/extension-task-list";
 import TaskItem from "@tiptap/extension-task-item";
 import TableRow from "@tiptap/extension-table-row";
@@ -49,9 +53,10 @@ export const Editor = () => {
 			StarterKit,
 			Image,
 			ImageResize,
-			ResizableTable.configure({
-				resizable: true,
-			}),
+			TextStyle,
+			Color,
+			Underline,
+			FontFamily,
 			TableRow,
 			TableCell,
 			TableHeader,
@@ -59,7 +64,12 @@ export const Editor = () => {
 			TaskItem.configure({
 				nested: true,
 			}),
-			Underline,
+			ResizableTable.configure({
+				resizable: true,
+			}),
+			Highlight.configure({
+				multicolor: true,
+			}),
 		],
 		content: `
         <table>
