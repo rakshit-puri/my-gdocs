@@ -68,7 +68,14 @@ const ListButton = () => {
 				const nestedList = listNode.createAndFill();
 				if (!nestedList) return false;
 
-				tr.insert(pos + 1, nestedList);
+				const listItem = state.doc.nodeAt(pos);
+				if (!listItem) return false;
+
+				// Only insert if there isn't already a nested list
+				if (listItem.content && listItem.content.lastChild?.type === listNode) return false;
+
+				// Insert nested list as a child at the end of the current list item
+				tr.insert(pos + listItem.nodeSize - 1, nestedList);
 				return true;
 			})
 			.run();
