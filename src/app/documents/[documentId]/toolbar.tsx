@@ -1,12 +1,26 @@
 "use client";
 
+import { useState } from "react";
+import { useEditorStore } from "@/store/use-editor-store";
 import { cn } from "@/lib/utils";
+import { SketchPicker, type ColorResult } from "react-color";
+import { type Level } from "@tiptap/extension-heading";
+import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
 	LucideIcon,
 	MessageSquarePlusIcon,
 	UndoIcon,
 	RedoIcon,
 	BoldIcon,
+	LinkIcon,
 	ItalicIcon,
 	UnderlineIcon,
 	StrikethroughIcon,
@@ -16,16 +30,30 @@ import {
 	ChevronDownIcon,
 	HighlighterIcon,
 } from "lucide-react";
-import { type Level } from "@tiptap/extension-heading";
-import { useEditorStore } from "@/store/use-editor-store";
-import { Separator } from "@/components/ui/separator";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { SketchPicker, type ColorResult } from "react-color";
+
+const LinkButton = () => {
+	const { editor } = useEditorStore();
+
+	const [value, setValue] = useState("");
+	const onChange = (href: string) => {
+		editor?.chain().focus().extendMarkRange("link").setLink({ href }).run();
+		setValue("");
+	};
+
+	return (
+		<DropdownMenu onOpenChange={(open) => open && setValue(editor?.getAttributes("link").href || "")}>
+			<DropdownMenuTrigger asChild>
+				<button className="h-7 min-w-7 shrink-0 flex items-center justify-center rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm">
+					<LinkIcon className="size-4" />
+				</button>
+			</DropdownMenuTrigger>
+			<DropdownMenuContent className="p-2.5 flex items-center gap-x-2">
+				<Input placeholder="Paste link here" value={value} onChange={(e) => setValue(e.target.value)} />
+				<Button onClick={() => onChange(value)}>Apply</Button>
+			</DropdownMenuContent>
+		</DropdownMenu>
+	);
+};
 
 const TextColorButton = () => {
 	const { editor } = useEditorStore();
@@ -62,7 +90,7 @@ const HighlightColorButton = () => {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<button className="h-7 min-w-7 shrink-0 flex flex-col items-center justify-center rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm">
+				<button className="h-7 min-w-7 shrink-0 flex items-center justify-center rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm">
 					<HighlighterIcon className="size-4" />
 				</button>
 			</DropdownMenuTrigger>
@@ -276,7 +304,7 @@ export const Toolbar = () => {
 			<TextColorButton />
 			<HighlightColorButton />
 			<Separator orientation="vertical" className="h-6 bg-neutral-300" />
-			{/* TODO: Link */}
+			<LinkButton />
 			{/* TODO: Image */}
 			{/* TODO: Align */}
 			{/* TODO: Line Height */}

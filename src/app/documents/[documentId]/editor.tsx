@@ -1,6 +1,7 @@
 "use client";
 
 import StarterKit from "@tiptap/starter-kit";
+import { Link } from "@tiptap/extension-link";
 import { FontFamily } from "@tiptap/extension-font-family";
 import { TextStyle } from "@tiptap/extension-text-style";
 import { Color } from "@tiptap/extension-color";
@@ -53,6 +54,11 @@ export const Editor = () => {
 			StarterKit,
 			Image,
 			ImageResize,
+			Link.configure({
+				openOnClick: false,
+				autolink: true,
+				defaultProtocol: "https",
+			}),
 			TextStyle,
 			Color,
 			Underline,
