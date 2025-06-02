@@ -1,22 +1,22 @@
 "use client";
 
 import StarterKit from "@tiptap/starter-kit";
-import { Link } from "@tiptap/extension-link";
-import { FontFamily } from "@tiptap/extension-font-family";
-import { TextStyle } from "@tiptap/extension-text-style";
-import { Color } from "@tiptap/extension-color";
 import Highlight from "@tiptap/extension-highlight";
 import TaskList from "@tiptap/extension-task-list";
 import TaskItem from "@tiptap/extension-task-item";
 import TableRow from "@tiptap/extension-table-row";
 import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
-import Image from "@tiptap/extension-image";
+import TextAlign from "@tiptap/extension-text-align";
 import ImageResize from "tiptap-extension-resize-image";
-import { useEditorStore } from "@/store/use-editor-store";
-import { ResizableTable } from "@/components/resizable-table";
+import { Link } from "@tiptap/extension-link";
+import { FontFamily } from "@tiptap/extension-font-family";
+import { TextStyle } from "@tiptap/extension-text-style";
+import { Color } from "@tiptap/extension-color";
 import { Underline } from "@tiptap/extension-underline";
 import { useEditor, EditorContent } from "@tiptap/react";
+import { useEditorStore } from "@/store/use-editor-store";
+import { ResizableTable } from "@/components/resizable-table";
 
 export const Editor = () => {
 	const { setEditor } = useEditorStore();
@@ -52,7 +52,6 @@ export const Editor = () => {
 		},
 		extensions: [
 			StarterKit,
-			Image,
 			ImageResize,
 			Link.configure({
 				openOnClick: false,
@@ -60,6 +59,9 @@ export const Editor = () => {
 				defaultProtocol: "https",
 			}),
 			TextStyle,
+			TextAlign.configure({
+				types: ["heading", "paragraph"],
+			}),
 			Color,
 			Underline,
 			FontFamily,
