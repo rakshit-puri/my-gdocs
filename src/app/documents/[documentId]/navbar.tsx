@@ -35,6 +35,7 @@ import {
 } from "lucide-react";
 import { BsFilePdf } from "react-icons/bs";
 import TableGridPicker from "@/components/table-grid-picker";
+import { useEditorStore } from "@/store/use-editor-store";
 
 interface NavbarProps {
 	showRuler: boolean;
@@ -42,6 +43,9 @@ interface NavbarProps {
 }
 
 export const Navbar = ({ showRuler, toggleRuler }: NavbarProps) => {
+	const { editor } = useEditorStore();
+	const chain = () => editor?.chain().focus();
+
 	return (
 		<nav className="flex items-center">
 			<div className="flex gap-2 items-center">
@@ -107,11 +111,11 @@ export const Navbar = ({ showRuler, toggleRuler }: NavbarProps) => {
 								Edit
 							</MenubarTrigger>
 							<MenubarContent>
-								<MenubarItem>
+								<MenubarItem onClick={() => chain()?.undo().run()}>
 									<Undo2Icon className="size-4 mr-2" />
 									Undo <MenubarShortcut>Ctrl+Z</MenubarShortcut>
 								</MenubarItem>
-								<MenubarItem>
+								<MenubarItem onClick={() => chain()?.redo().run()}>
 									<Redo2Icon className="size-4 mr-2" />
 									Redo <MenubarShortcut>Ctrl+Y</MenubarShortcut>
 								</MenubarItem>
@@ -171,28 +175,40 @@ export const Navbar = ({ showRuler, toggleRuler }: NavbarProps) => {
 										Text
 									</MenubarSubTrigger>
 									<MenubarSubContent>
-										<MenubarItem className="flex items-center justify-between gap-x-4 px-2 py-1 rounded-sm hover:bg-neutral-100">
+										<MenubarItem
+											onClick={() => chain()?.toggleBold().run()}
+											className="flex items-center justify-between gap-x-4 px-2 py-1 rounded-sm hover:bg-neutral-100"
+										>
 											<span className="flex items-center gap-x-2">
 												<BoldIcon className="size-4" />
 												Bold
 											</span>
 											<MenubarShortcut>Ctrl+B</MenubarShortcut>
 										</MenubarItem>
-										<MenubarItem className="flex items-center justify-between gap-x-4 px-2 py-1 rounded-sm hover:bg-neutral-100">
+										<MenubarItem
+											onClick={() => chain()?.toggleItalic().run()}
+											className="flex items-center justify-between gap-x-4 px-2 py-1 rounded-sm hover:bg-neutral-100"
+										>
 											<span className="flex items-center gap-x-2">
 												<ItalicIcon className="size-4" />
 												Italic
 											</span>
 											<MenubarShortcut>Ctrl+I</MenubarShortcut>
 										</MenubarItem>
-										<MenubarItem className="flex items-center justify-between gap-x-4 px-2 py-1 rounded-sm hover:bg-neutral-100">
+										<MenubarItem
+											onClick={() => chain()?.toggleUnderline().run()}
+											className="flex items-center justify-between gap-x-4 px-2 py-1 rounded-sm hover:bg-neutral-100"
+										>
 											<span className="flex items-center gap-x-2">
 												<UnderlineIcon className="size-4" />
 												Underline
 											</span>
 											<MenubarShortcut>Ctrl+U</MenubarShortcut>
 										</MenubarItem>
-										<MenubarItem className="flex items-center justify-between gap-x-4 px-2 py-1 rounded-sm hover:bg-neutral-100">
+										<MenubarItem
+											onClick={() => chain()?.toggleStrike().run()}
+											className="flex items-center justify-between gap-x-4 px-2 py-1 rounded-sm hover:bg-neutral-100"
+										>
 											<span className="flex items-center gap-x-2">
 												<StrikethroughIcon className="size-4" />
 												Strikethrough
