@@ -24,8 +24,17 @@ import {
 	GlobeIcon,
 	PrinterIcon,
 	Trash,
+	Undo2Icon,
+	Redo2Icon,
+	TextIcon,
+	BoldIcon,
+	ItalicIcon,
+	UnderlineIcon,
+	StrikethroughIcon,
+	CheckIcon,
 } from "lucide-react";
 import { BsFilePdf } from "react-icons/bs";
+import TableGridPicker from "@/components/table-grid-picker";
 
 export const Navbar = () => {
 	return (
@@ -84,7 +93,7 @@ export const Navbar = () => {
 								<MenubarSeparator />
 								<MenubarItem onClick={() => window.print()}>
 									<PrinterIcon className="size-4 mr-2" />
-									Print <MenubarShortcut>Ctrl + P</MenubarShortcut>
+									Print <MenubarShortcut>Ctrl+P</MenubarShortcut>
 								</MenubarItem>
 							</MenubarContent>
 						</MenubarMenu>
@@ -94,8 +103,12 @@ export const Navbar = () => {
 							</MenubarTrigger>
 							<MenubarContent>
 								<MenubarItem>
-									<FileIcon className="size-4 mr-2" />
-									Save
+									<Undo2Icon className="size-4 mr-2" />
+									Undo <MenubarShortcut>Ctrl+Z</MenubarShortcut>
+								</MenubarItem>
+								<MenubarItem>
+									<Redo2Icon className="size-4 mr-2" />
+									Redo <MenubarShortcut>Ctrl+Y</MenubarShortcut>
 								</MenubarItem>
 							</MenubarContent>
 						</MenubarMenu>
@@ -104,9 +117,13 @@ export const Navbar = () => {
 								View
 							</MenubarTrigger>
 							<MenubarContent>
-								<MenubarItem>
-									<FileIcon className="size-4 mr-2" />
-									Save
+								<MenubarItem className="flex items-center justify-between gap-x-4 px-2 py-1 rounded-sm hover:bg-neutral-100">
+									{true ? (
+										<CheckIcon className="size-4" />
+									) : (
+										<span style={{ width: 16, height: 16, display: "inline-block" }} />
+									)}
+									Show Ruler
 								</MenubarItem>
 							</MenubarContent>
 						</MenubarMenu>
@@ -115,21 +132,65 @@ export const Navbar = () => {
 								Insert
 							</MenubarTrigger>
 							<MenubarContent>
-								<MenubarItem>
-									<FileIcon className="size-4 mr-2" />
-									Save
-								</MenubarItem>
+								<MenubarSub>
+									<MenubarSubTrigger>
+										<FileIcon className="size-4 mr-2" />
+										Table
+									</MenubarSubTrigger>
+									<MenubarSubContent>
+										<MenubarItem>
+											<TableGridPicker
+												onSelect={(rows, cols) => {
+													// Handle table insert here
+													console.log(`Insert table: ${rows} x ${cols}`);
+												}}
+											/>
+										</MenubarItem>
+									</MenubarSubContent>
+								</MenubarSub>
 							</MenubarContent>
 						</MenubarMenu>
 						<MenubarMenu>
 							<MenubarTrigger className="text-sm font-normal py-0.5 px-[7px] rounded-sm hover:bg-muted h-auto">
 								Format
 							</MenubarTrigger>
-							<MenubarContent>
-								<MenubarItem>
-									<FileIcon className="size-4 mr-2" />
-									Save
-								</MenubarItem>
+							<MenubarContent className="print:hidden">
+								<MenubarSub>
+									<MenubarSubTrigger>
+										<TextIcon className="size-4 mr-2" />
+										Text
+									</MenubarSubTrigger>
+									<MenubarSubContent>
+										<MenubarItem className="flex items-center justify-between gap-x-4 px-2 py-1 rounded-sm hover:bg-neutral-100">
+											<span className="flex items-center gap-x-2">
+												<BoldIcon className="size-4" />
+												Bold
+											</span>
+											<MenubarShortcut>Ctrl+B</MenubarShortcut>
+										</MenubarItem>
+										<MenubarItem className="flex items-center justify-between gap-x-4 px-2 py-1 rounded-sm hover:bg-neutral-100">
+											<span className="flex items-center gap-x-2">
+												<ItalicIcon className="size-4" />
+												Italic
+											</span>
+											<MenubarShortcut>Ctrl+I</MenubarShortcut>
+										</MenubarItem>
+										<MenubarItem className="flex items-center justify-between gap-x-4 px-2 py-1 rounded-sm hover:bg-neutral-100">
+											<span className="flex items-center gap-x-2">
+												<UnderlineIcon className="size-4" />
+												Underline
+											</span>
+											<MenubarShortcut>Ctrl+U</MenubarShortcut>
+										</MenubarItem>
+										<MenubarItem className="flex items-center justify-between gap-x-4 px-2 py-1 rounded-sm hover:bg-neutral-100">
+											<span className="flex items-center gap-x-2">
+												<StrikethroughIcon className="size-4" />
+												Strikethrough
+											</span>
+											<MenubarShortcut>Alt+Shift+5</MenubarShortcut>
+										</MenubarItem>
+									</MenubarSubContent>
+								</MenubarSub>
 							</MenubarContent>
 						</MenubarMenu>
 					</Menubar>
