@@ -118,12 +118,14 @@ export const Navbar = () => {
 							</MenubarTrigger>
 							<MenubarContent>
 								<MenubarItem className="flex items-center justify-between gap-x-4 px-2 py-1 rounded-sm hover:bg-neutral-100">
-									{true ? (
-										<CheckIcon className="size-4" />
-									) : (
-										<span style={{ width: 16, height: 16, display: "inline-block" }} />
-									)}
-									Show Ruler
+									<span className="flex items-center gap-x-2">
+										{true ? (
+											<CheckIcon className="size-4" />
+										) : (
+											<span style={{ width: 16, height: 16, display: "inline-block" }} />
+										)}
+										Show Ruler
+									</span>
 								</MenubarItem>
 							</MenubarContent>
 						</MenubarMenu>
