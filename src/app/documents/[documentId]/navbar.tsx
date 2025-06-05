@@ -46,6 +46,10 @@ export const Navbar = ({ showRuler, toggleRuler }: NavbarProps) => {
 	const { editor } = useEditorStore();
 	const chain = () => editor?.chain().focus();
 
+	const insertTable = ({ rows, cols }: { rows: number; cols: number }) => {
+		chain()?.insertTable({ rows, cols, withHeaderRow: false }).run();
+	};
+
 	return (
 		<nav className="flex items-center">
 			<div className="flex gap-2 items-center">
@@ -155,8 +159,7 @@ export const Navbar = ({ showRuler, toggleRuler }: NavbarProps) => {
 										<MenubarItem>
 											<TableGridPicker
 												onSelect={(rows, cols) => {
-													// Handle table insert here
-													console.log(`Insert table: ${rows} x ${cols}`);
+													insertTable({ rows, cols });
 												}}
 											/>
 										</MenubarItem>
