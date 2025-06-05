@@ -7,7 +7,7 @@ const MIN_SPACE = 100;
 
 const MAJOR_TICKS = 6.5;
 const SUBDIVISIONS = 10;
-const TOTAL_TICKS = MAJOR_TICKS * SUBDIVISIONS + 1; // 91 ticks for 9 units
+const TOTAL_TICKS = MAJOR_TICKS * SUBDIVISIONS + 1;
 
 export const Ruler = () => {
 	const [leftMargin, setLeftMargin] = useState(MARGIN);
@@ -69,9 +69,9 @@ export const Ruler = () => {
 			onMouseMove={handleMouseMove}
 			onMouseUp={handleMouseUp}
 			onMouseLeave={handleMouseUp}
-			className="h-6 border-b border-gray-300 flex items-end relative select-none print:hidden"
+			className="w-[816px] mx-auto h-6 border-b border-gray-300 flex items-end relative select-none print:hidden"
 		>
-			<div id="ruler-container" className="max-w-[816px] w-full mx-auto h-full relative">
+			<div id="ruler-container" className="w-full h-full relative">
 				<Marker
 					position={leftMargin}
 					isLeft={true}

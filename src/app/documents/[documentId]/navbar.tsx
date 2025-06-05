@@ -36,7 +36,12 @@ import {
 import { BsFilePdf } from "react-icons/bs";
 import TableGridPicker from "@/components/table-grid-picker";
 
-export const Navbar = () => {
+interface NavbarProps {
+	showRuler: boolean;
+	toggleRuler?: () => void;
+}
+
+export const Navbar = ({ showRuler, toggleRuler }: NavbarProps) => {
 	return (
 		<nav className="flex items-center">
 			<div className="flex gap-2 items-center">
@@ -117,9 +122,12 @@ export const Navbar = () => {
 								View
 							</MenubarTrigger>
 							<MenubarContent>
-								<MenubarItem className="flex items-center justify-between gap-x-4 px-2 py-1 rounded-sm hover:bg-neutral-100">
+								<MenubarItem
+									onClick={toggleRuler}
+									className="flex items-center justify-between gap-x-4 px-2 py-1 rounded-sm hover:bg-neutral-100"
+								>
 									<span className="flex items-center gap-x-2">
-										{true ? (
+										{showRuler ? (
 											<CheckIcon className="size-4" />
 										) : (
 											<span style={{ width: 16, height: 16, display: "inline-block" }} />
