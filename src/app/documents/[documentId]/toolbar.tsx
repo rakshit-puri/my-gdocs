@@ -84,17 +84,21 @@ export const Toolbar = () => {
 		],
 		[
 			{
-				label: "Task List",
-				icon: ListTodoIcon,
-				onClick: () => chain()?.toggleTaskList().run(),
-				isActive: editor?.isActive("taskList"),
-			},
-			{
 				label: "Comment",
 				icon: MessageSquarePlusIcon,
 				onClick: () => console.log("TODO: Comment feature not implemented yet"),
 				isActive: false,
 			},
+		],
+		[
+			{
+				label: "Task List",
+				icon: ListTodoIcon,
+				onClick: () => chain()?.toggleTaskList().run(),
+				isActive: editor?.isActive("taskList"),
+			},
+		],
+		[
 			{
 				label: "Remove Formatting",
 				icon: RemoveFormattingIcon,
@@ -115,20 +119,25 @@ export const Toolbar = () => {
 			<Separator orientation="vertical" className="h-6 bg-neutral-300" />
 			<FontSizeButton />
 			<Separator orientation="vertical" className="h-6 bg-neutral-300" />
+			{toolbarSections[1].map((item) => (
+				<ToolbarButton key={item.label} {...item} />
+			))}
 			<TextColorButton />
 			<HighlightColorButton />
 			<Separator orientation="vertical" className="h-6 bg-neutral-300" />
 			<LinkButton />
-			<ImageButton />
-			<AlignButton />
-			<LineHeightButton />
-			<ListButton />
-			<Separator orientation="vertical" className="h-6 bg-neutral-300" />
-			{toolbarSections[1].map((item) => (
+			{toolbarSections[2].map((item) => (
 				<ToolbarButton key={item.label} {...item} />
 			))}
+			<ImageButton />
 			<Separator orientation="vertical" className="h-6 bg-neutral-300" />
-			{toolbarSections[2].map((item) => (
+			{toolbarSections[3].map((item) => (
+				<ToolbarButton key={item.label} {...item} />
+			))}
+			<ListButton />
+			<AlignButton />
+			<LineHeightButton />
+			{toolbarSections[4].map((item) => (
 				<ToolbarButton key={item.label} {...item} />
 			))}
 		</div>

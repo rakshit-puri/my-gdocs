@@ -12,7 +12,7 @@ const ToolbarButton = ({ onClick, isActive, icon: Icon }: ToolbarButtonProps) =>
 		<button
 			onClick={onClick}
 			className={cn(
-				"text-sm h-7 min-w-7 flex items-center rounded-sm hover:bg-neutral-200/80",
+				"text-sm h-7 min-w-7 flex items-center justify-center p-0 rounded-sm hover:bg-neutral-200/80",
 				isActive && "bg-neutral-200/80"
 			)}
 		>
