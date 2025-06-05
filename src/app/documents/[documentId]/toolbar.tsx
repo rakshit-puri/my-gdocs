@@ -25,7 +25,6 @@ import {
 	RemoveFormattingIcon,
 } from "lucide-react";
 import FontSizeButton from "@/components/toolbar/button/font-size";
-import { LineHeight } from "@/extensions/line-height";
 import LineHeightButton from "@/components/toolbar/button/line-height";
 
 export const Toolbar = () => {
