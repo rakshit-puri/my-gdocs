@@ -3,7 +3,7 @@
 import { Navbar } from "./navbar";
 import { TemplateGallery } from "./template-gallery";
 import { useQuery } from "convex/react";
-import { api } from "../../../convex/_generated/api";
+import { api } from "../../../../convex/_generated/api";
 
 const Home = () => {
 	const documents = useQuery(api.documents.getDocuments);
