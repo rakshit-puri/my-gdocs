@@ -13,7 +13,7 @@ export const DocumentRow = ({ document }: DocumentRowProps) => {
 	const router = useRouter();
 
 	return (
-		<TableRow className="cursor-pointer" onClick={() => router.push(`/documents/${document._id}}`)}>
+		<TableRow className="cursor-pointer" onClick={() => router.push(`/documents/${document._id}`)}>
 			<TableCell className="w-[50px]">
 				<SiGoogledocs className="size-6 fill-blue-500" />
 			</TableCell>

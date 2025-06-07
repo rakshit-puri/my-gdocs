@@ -86,8 +86,8 @@ export const Toolbar = () => {
 			{
 				label: "Comment",
 				icon: MessageSquarePlusIcon,
-				onClick: () => console.log("TODO: Comment feature not implemented yet"),
-				isActive: false,
+				onClick: () => chain()?.addPendingComment().run(),
+				isActive: editor?.isActive("liveblocksCommentMark"),
 			},
 		],
 		[

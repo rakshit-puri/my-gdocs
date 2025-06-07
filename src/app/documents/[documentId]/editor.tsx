@@ -20,7 +20,8 @@ import { useEditorStore } from "@/store/use-editor-store";
 import { ResizableTable } from "@/components/resizable-table";
 import { FontSize } from "@/extensions/font-size";
 import { LineHeight } from "@/extensions/line-height";
-import { useLiveblocksExtension, FloatingToolbar } from "@liveblocks/react-tiptap";
+import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
+import { Threads } from "./threads";
 
 interface EditorProps {
 	showRuler: boolean;
@@ -109,6 +110,7 @@ export const Editor = ({ showRuler }: EditorProps) => {
 			{showRuler && <Ruler />}
 			<div className="min-w-max flex justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0">
 				<EditorContent editor={editor} />
+				<Threads editor={editor} />
 			</div>
 		</div>
 	);
