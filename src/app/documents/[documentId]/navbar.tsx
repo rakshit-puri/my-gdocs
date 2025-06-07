@@ -36,7 +36,7 @@ import {
 import { BsFilePdf } from "react-icons/bs";
 import TableGridPicker from "@/components/table-grid-picker";
 import { useEditorStore } from "@/store/use-editor-store";
-import { UserButton } from "@clerk/nextjs";
+import { UserButton, OrganizationSwitcher } from "@clerk/nextjs";
 
 interface NavbarProps {
 	showRuler: boolean;
@@ -264,7 +264,15 @@ export const Navbar = ({ showRuler, toggleRuler }: NavbarProps) => {
 					</div>
 				</div>
 			</div>
-			<UserButton />
+			<div className="flex gap-3 items-center pl-6">
+				<OrganizationSwitcher
+					afterCreateOrganizationUrl="/"
+					afterLeaveOrganizationUrl="/"
+					afterSelectOrganizationUrl="/"
+					afterSelectPersonalUrl="/"
+				/>
+				<UserButton />
+			</div>
 		</nav>
 	);
 };
