@@ -22,7 +22,7 @@ export const DocumentRow = ({ document }: DocumentRowProps) => {
 			<TableCell className="text-muted-foreground hidden md:table-cell">
 				{format(new Date(document._creationTime), "MMM dd, yy")}
 			</TableCell>
-			<TableCell className="flex ml-auto justify-end">
+			<TableCell className="flex justify-end">
 				<Button variant="ghost" size="icon" className="rounded-full">
 					<MoreVertical className="size-4" />
 				</Button>
