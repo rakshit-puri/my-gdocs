@@ -1,4 +1,4 @@
-import { Doc } from "../../../../convex/_generated/dataModel";
+import { Doc } from "../../../convex/_generated/dataModel";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Building2Icon, CircleUserIcon } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";

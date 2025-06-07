@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Editor } from "./editor";
 import { Toolbar } from "./toolbar";
 import { Navbar } from "./navbar";
+import { Room } from "./room";
 
 interface DocumentIdClientProps {
 	documentId: string;
@@ -19,7 +20,9 @@ export const DocumentIdClient = ({ documentId }: DocumentIdClientProps) => {
 				<Toolbar />
 			</div>
 			<div className="pt-[114px] print:pt-0">
-				<Editor showRuler={showRuler} />
+				<Room>
+					<Editor showRuler={showRuler} />
+				</Room>
 			</div>
 		</div>
 	);

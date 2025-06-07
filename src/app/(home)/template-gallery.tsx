@@ -3,7 +3,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { cn } from "@/lib/utils";
 import { templates } from "@/constants/templates";
 import { useRouter } from "next/navigation";
-import { api } from "../../../../convex/_generated/api";
+import { api } from "../../../convex/_generated/api";
 import { useState } from "react";
 import { useMutation } from "convex/react";
 import { toast } from "sonner";

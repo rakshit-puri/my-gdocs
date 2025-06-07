@@ -20,6 +20,7 @@ import { useEditorStore } from "@/store/use-editor-store";
 import { ResizableTable } from "@/components/resizable-table";
 import { FontSize } from "@/extensions/font-size";
 import { LineHeight } from "@/extensions/line-height";
+import { useLiveblocksExtension, FloatingToolbar } from "@liveblocks/react-tiptap";
 
 interface EditorProps {
 	showRuler: boolean;
@@ -27,6 +28,8 @@ interface EditorProps {
 
 export const Editor = ({ showRuler }: EditorProps) => {
 	const { setEditor } = useEditorStore();
+	const liveblocks = useLiveblocksExtension();
+
 	const editor = useEditor({
 		onCreate({ editor }) {
 			setEditor(editor);
@@ -58,6 +61,7 @@ export const Editor = ({ showRuler }: EditorProps) => {
 			},
 		},
 		extensions: [
+			liveblocks,
 			StarterKit.configure({
 				bulletList: {
 					keepMarks: true,
@@ -67,6 +71,7 @@ export const Editor = ({ showRuler }: EditorProps) => {
 					keepMarks: true,
 					keepAttributes: false,
 				},
+				history: false,
 			}),
 			ImageResize,
 			TextStyle,

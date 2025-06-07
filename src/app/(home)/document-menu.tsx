@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ExternalLinkIcon, FilePenIcon, MoreVertical, TrashIcon } from "lucide-react";
-import { Id } from "../../../../convex/_generated/dataModel";
+import { Id } from "../../../convex/_generated/dataModel";
 import {
 	DropdownMenu,
 	DropdownMenuItem,

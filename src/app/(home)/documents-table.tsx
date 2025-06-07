@@ -1,7 +1,7 @@
 "use client";
 
 import { PaginationStatus } from "convex/react";
-import { Doc } from "../../../../convex/_generated/dataModel";
+import { Doc } from "../../../convex/_generated/dataModel";
 import { DocumentRow } from "./document-row";
 
 const PAGE_SIZE = 5;
