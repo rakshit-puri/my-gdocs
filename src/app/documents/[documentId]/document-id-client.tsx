@@ -14,7 +14,7 @@ export const DocumentIdClient = ({ documentId }: DocumentIdClientProps) => {
 	const [showRuler, setShowRuler] = useState(true);
 
 	return (
-		<Room key={documentId}>
+		<Room>
 			<div className="min-h-screen bg-[#FAFBFD]">
 				<div className="flex flex-col px-4 pt-2 fixed top-0 gap-y-2 left-0 right-0 z-10 bg-[#FAFBFD] print:hidden">
 					<Navbar showRuler={showRuler} toggleRuler={() => setShowRuler((v) => !v)} />

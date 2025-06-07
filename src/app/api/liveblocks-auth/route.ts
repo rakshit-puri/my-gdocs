@@ -2,7 +2,6 @@ import { Liveblocks } from "@liveblocks/node";
 import { ConvexHttpClient } from "convex/browser";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { api } from "../../../../convex/_generated/api";
-import { Id } from "../../../../convex/_generated/dataModel";
 
 const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 const liveblocks = new Liveblocks({
@@ -13,25 +12,28 @@ if (!process.env.NEXT_PUBLIC_CONVEX_URL) {
 	throw new Error("Missing NEXT_PUBLIC_CONVEX_URL in your .env file");
 }
 
-type SessionOrg = { id: string; rol: string; slg: string };
-type ClerkSessionClaims = { o?: SessionOrg };
-
 export async function POST(req: Request) {
 	const { sessionClaims } = await auth();
-	if (!sessionClaims) return new Response("Unauthorized", { status: 401 });
+	if (!sessionClaims) {
+		return new Response("Unauthorized", { status: 401 });
+	}
 
-	const claims = sessionClaims as ClerkSessionClaims;
 	const user = await currentUser();
-	if (!user) return new Response("Unauthorized", { status: 401 });
+	if (!user) {
+		return new Response("Unauthorized", { status: 401 });
+	}
 
 	const { room } = await req.json();
-	if (typeof room !== "string") return new Response("Invalid room ID", { status: 400 });
+	const document = await convex.query(api.documents.getDocumentById, { id: room });
 
-	const document = await convex.query(api.documents.getDocumentById, { id: room as Id<"documents">});
-	if (!document) return new Response("Document not found", { status: 404 });
+	if (!document) {
+		return new Response("Document not found", { status: 404 });
+	}
 
 	const isOwner = document.ownerId === user.id;
-	const isOrganisationMember = document.organizationId === claims.o?.id;
+	const isOrganisationMember = !!(
+		document.organizationId && document.organizationId === (sessionClaims.o as { id: string })?.id
+	);
 
 	if (!isOwner && !isOrganisationMember) {
 		return new Response("Forbidden", { status: 403 });
