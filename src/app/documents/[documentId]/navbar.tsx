@@ -65,7 +65,7 @@ export const Navbar = ({ showRuler, toggleRuler, data, setLoading }: NavbarProps
 			setLoading(true);
 			router.push("/");
 		}
-	}, [data, router]);
+	}, [data, router, setLoading]);
 
 	if (!data) {
 		return null;
