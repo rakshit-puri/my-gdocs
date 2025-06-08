@@ -23,8 +23,7 @@ import { LineHeight } from "@/extensions/line-height";
 import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
 import { Threads } from "./threads";
 import { useStorage, ClientSideSuspense } from "@liveblocks/react/suspense";
-
-const DEFAULT_MARGIN = 56;
+import { DEFAULT_MARGIN } from "@/constants/margin";
 
 interface EditorProps {
 	showRuler: boolean;
