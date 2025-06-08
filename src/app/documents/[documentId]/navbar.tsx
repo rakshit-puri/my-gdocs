@@ -38,6 +38,7 @@ import TableGridPicker from "@/components/table-grid-picker";
 import { useEditorStore } from "@/store/use-editor-store";
 import { UserButton, OrganizationSwitcher } from "@clerk/nextjs";
 import { Avatars } from "./avatars";
+import { Inbox } from "./inbox";
 
 interface NavbarProps {
 	showRuler: boolean;
@@ -91,7 +92,7 @@ export const Navbar = ({ showRuler, toggleRuler }: NavbarProps) => {
 	};
 
 	return (
-		<nav className="flex items-center justify-between h-full w-full">
+		<nav className="flex items-center justify-between h-full w-screen">
 			<div className="flex gap-3 items-center">
 				<Link href="/">
 					<Image src="/icon.svg" alt="Logo" width={36} height={36} />
@@ -265,8 +266,11 @@ export const Navbar = ({ showRuler, toggleRuler }: NavbarProps) => {
 					</div>
 				</div>
 			</div>
-			<div className="flex gap-3 items-center pl-6">
+			<div className="flex items-center gap-3 pr-12 mr-1">
 				<Avatars />
+				<div className="flex items-center">
+					<Inbox />
+				</div>
 				<OrganizationSwitcher
 					afterCreateOrganizationUrl="/"
 					afterLeaveOrganizationUrl="/"
