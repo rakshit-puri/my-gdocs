@@ -72,7 +72,7 @@ export const Ruler = () => {
 			onMouseMove={handleMouseMove}
 			onMouseUp={handleMouseUp}
 			onMouseLeave={handleMouseUp}
-			className="w-[816px] mx-auto h-6 border-b border-gray-300 flex items-end relative select-none print:hidden"
+			className={`w-[${PAGE_WIDTH}px] mx-auto h-6 border-b border-gray-300 flex items-end relative select-none print:hidden`}
 		>
 			<div id="ruler-container" className="w-full h-full relative">
 				<Marker
@@ -90,7 +90,7 @@ export const Ruler = () => {
 					onDoubleClick={handleRightDoubleClick}
 				/>
 				<div className="absolute inset-0 bottom-0 h-full">
-					<div className="relative h-full w-[816px]">
+					<div className={`relative h-full w-[${PAGE_WIDTH}px]`}>
 						{Array.from({ length: TOTAL_TICKS }).map((_, i) => {
 							const position = Math.round((i * PAGE_WIDTH) / (TOTAL_TICKS - 1));
 							return (

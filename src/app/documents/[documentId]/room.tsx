@@ -7,8 +7,8 @@ import { FullScreenLoader } from "@/components/full-screen-loader";
 import { getUsers, getDocuments } from "./actions";
 import { toast } from "sonner";
 import { Id } from "../../../../convex/_generated/dataModel";
+import { DEFAULT_MARGIN } from "@/constants/margin";
 
-const DEFAULT_MARGIN = 56;
 type User = { id: string; name: string; avatar: string };
 
 export function Room({ children }: { children: ReactNode }) {
