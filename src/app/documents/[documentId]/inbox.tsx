@@ -28,15 +28,7 @@ const InboxMenu = () => {
 					)}
 				</Button>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent
-				asChild
-				align="end"
-				className="w-auto z-[100]"
-				sideOffset={8}
-				side="bottom"
-				autoFocus={false}
-				tabIndex={-1}
-			>
+			<DropdownMenuContent align="end" className="w-auto" sideOffset={8} side="bottom" autoFocus={false}>
 				{inboxNotifications.length > 0 ? (
 					<InboxNotificationList>
 						{inboxNotifications.map((notification) => (

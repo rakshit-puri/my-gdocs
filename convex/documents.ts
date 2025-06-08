@@ -2,6 +2,24 @@ import { paginationOptsValidator } from "convex/server";
 import { mutation, query } from "./_generated/server";
 import { ConvexError, v } from "convex/values";
 
+export const getByIds = query({
+args: {ids: v.array(v.id("documents"))},
+  handler: async (ctx, { ids }) => {
+    const documents = [];
+    for(const id of ids) {
+      const doc = await ctx.db.get(id);
+
+      if(doc) {
+        documents.push({id: doc._id, name: doc.title});
+      } else {
+        documents.push({id, name: "[Deleted]"});
+      }
+    }
+    
+    return documents;
+  },
+});
+
 export const getDocuments = query({
   args: { paginationOpts: paginationOptsValidator, search: v.optional(v.string())},
   handler: async (ctx, { paginationOpts, search}) => {

@@ -87,6 +87,10 @@ body {
 	}
 }
 
+[data-radix-popper-content-wrapper] {
+	z-index: 1000 !important;
+}
+
 .tiptap {
 	/* Link Styles*/
 	a {
