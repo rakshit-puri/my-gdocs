@@ -45,17 +45,16 @@ import { RenameDialog } from "@/components/rename-dialog";
 import { Doc } from "../../../../convex/_generated/dataModel";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { useEffect, useState } from "react";
-import { FullScreenLoader } from "@/components/full-screen-loader";
+import { useEffect } from "react";
 
 interface NavbarProps {
 	showRuler: boolean;
 	toggleRuler?: () => void;
 	data: Doc<"documents"> | null;
+	setLoading: (value: boolean) => void;
 }
 
-export const Navbar = ({ showRuler, toggleRuler, data }: NavbarProps) => {
-	const [loading, setLoading] = useState(false);
+export const Navbar = ({ showRuler, toggleRuler, data, setLoading }: NavbarProps) => {
 	const router = useRouter();
 	const { editor } = useEditorStore();
 	const chain = () => editor?.chain().focus();
@@ -70,10 +69,6 @@ export const Navbar = ({ showRuler, toggleRuler, data }: NavbarProps) => {
 
 	if (!data) {
 		return null;
-	}
-
-	if (loading) {
-		return <FullScreenLoader label="Loading..." />;
 	}
 
 	const onNewDocument = () => {
