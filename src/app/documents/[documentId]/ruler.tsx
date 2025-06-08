@@ -1,3 +1,4 @@
+import { useStorage, useMutation } from "@liveblocks/react/suspense";
 import { useRef, useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
 
@@ -10,8 +11,14 @@ const SUBDIVISIONS = 10;
 const TOTAL_TICKS = MAJOR_TICKS * SUBDIVISIONS + 1;
 
 export const Ruler = () => {
-	const [leftMargin, setLeftMargin] = useState(MARGIN);
-	const [rightMargin, setRightMargin] = useState(MARGIN);
+	const leftMargin = useStorage((root) => root.leftMargin) ?? MARGIN;
+	const setLeftMargin = useMutation(({ storage }, position: number) => {
+		storage.set("leftMargin", position);
+	}, []);
+	const rightMargin = useStorage((root) => root.rightMargin) ?? MARGIN;
+	const setRightMargin = useMutation(({ storage }, position: number) => {
+		storage.set("rightMargin", position);
+	}, []);
 
 	const [isDraggingLeft, setIsDraggingLeft] = useState(false);
 	const [isDraggingRight, setIsDraggingRight] = useState(false);

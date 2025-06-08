@@ -22,6 +22,9 @@ import { FontSize } from "@/extensions/font-size";
 import { LineHeight } from "@/extensions/line-height";
 import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
 import { Threads } from "./threads";
+import { useStorage } from "@liveblocks/react/suspense";
+
+const DEFAULT_MARGIN = 56;
 
 interface EditorProps {
 	showRuler: boolean;
@@ -29,6 +32,9 @@ interface EditorProps {
 
 export const Editor = ({ showRuler }: EditorProps) => {
 	const { setEditor } = useEditorStore();
+	const leftMargin = useStorage((root) => root.leftMargin);
+	const rightMargin = useStorage((root) => root.rightMargin);
+
 	const liveblocks = useLiveblocksExtension();
 
 	const editor = useEditor({
@@ -56,7 +62,7 @@ export const Editor = ({ showRuler }: EditorProps) => {
 		immediatelyRender: false,
 		editorProps: {
 			attributes: {
-				style: "padding-left: 56px; padding-right: 56px",
+				style: `padding-left: ${leftMargin ?? DEFAULT_MARGIN}px; padding-right: ${rightMargin ?? DEFAULT_MARGIN}px`,
 				class: "focus:outline-none print:border-0 bg-white border border-[#C7C7C7] flex flex-col min-h-[1054px] w-[816px] pt-10 pr-14 pb-10 cursor-text",
 				spellCheck: "true",
 			},

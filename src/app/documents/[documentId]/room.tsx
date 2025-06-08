@@ -8,6 +8,7 @@ import { getUsers, getDocuments } from "./actions";
 import { toast } from "sonner";
 import { Id } from "../../../../convex/_generated/dataModel";
 
+const DEFAULT_MARGIN = 56;
 type User = { id: string; name: string; avatar: string };
 
 export function Room({ children }: { children: ReactNode }) {
@@ -63,7 +64,10 @@ export function Room({ children }: { children: ReactNode }) {
 				}));
 			}}
 		>
-			<RoomProvider id={params.documentId as string}>
+			<RoomProvider
+				id={params.documentId as string}
+				initialStorage={{ leftMargin: DEFAULT_MARGIN, rightMargin: DEFAULT_MARGIN }}
+			>
 				<ClientSideSuspense fallback={<FullScreenLoader label="Room Loading" />}>{children}</ClientSideSuspense>
 			</RoomProvider>
 		</LiveblocksProvider>
