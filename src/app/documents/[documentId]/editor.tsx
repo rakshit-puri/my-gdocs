@@ -28,14 +28,18 @@ const DEFAULT_MARGIN = 56;
 
 interface EditorProps {
 	showRuler: boolean;
+	initialContent: string | undefined;
 }
 
-export const Editor = ({ showRuler }: EditorProps) => {
+export const Editor = ({ showRuler, initialContent }: EditorProps) => {
 	const { setEditor } = useEditorStore();
 	const leftMargin = useStorage((root) => root.leftMargin);
 	const rightMargin = useStorage((root) => root.rightMargin);
 
-	const liveblocks = useLiveblocksExtension();
+	const liveblocks = useLiveblocksExtension({
+		initialContent,
+		offlineSupport_experimental: true,
+	});
 
 	const editor = useEditor({
 		onCreate({ editor }) {

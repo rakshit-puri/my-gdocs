@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Editor } from "./editor";
 import { Toolbar } from "./toolbar";
 import { Navbar } from "./navbar";
@@ -13,8 +14,15 @@ interface DocumentIdClientProps {
 }
 
 export const Document = ({ preloadedDocument }: DocumentIdClientProps) => {
+	const router = useRouter();
 	const document = usePreloadedQuery(preloadedDocument);
 	const [showRuler, setShowRuler] = useState(true);
+
+	useEffect(() => {
+		if (!document) {
+			router.push("/");
+		}
+	}, [document, router]);
 
 	return (
 		<Room>
@@ -24,7 +32,7 @@ export const Document = ({ preloadedDocument }: DocumentIdClientProps) => {
 					<Toolbar />
 				</div>
 				<div className="pt-[114px] print:pt-0">
-					<Editor showRuler={showRuler} />
+					<Editor showRuler={showRuler} initialContent={document?.initialContent} />
 				</div>
 			</div>
 		</Room>
