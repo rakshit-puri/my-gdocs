@@ -92,7 +92,7 @@ export const Navbar = ({ showRuler, toggleRuler, data, setLoading }: NavbarProps
 	};
 
 	const onSaveJSON = () => {
-		if (!editor) return;
+		if (!editor || !data || data == null) return;
 
 		const content = editor.getJSON();
 		const blob = new Blob([JSON.stringify(content)], {
@@ -102,7 +102,7 @@ export const Navbar = ({ showRuler, toggleRuler, data, setLoading }: NavbarProps
 	};
 
 	const onSaveHTML = () => {
-		if (!editor) return;
+		if (!editor || !data || data == null) return;
 
 		const content = editor.getHTML();
 		const blob = new Blob([content], {
@@ -112,7 +112,7 @@ export const Navbar = ({ showRuler, toggleRuler, data, setLoading }: NavbarProps
 	};
 
 	const onSaveText = () => {
-		if (!editor) return;
+		if (!editor || !data || data == null) return;
 
 		const content = editor.getText();
 		const blob = new Blob([content], {
