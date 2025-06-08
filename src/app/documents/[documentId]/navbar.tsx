@@ -268,9 +268,7 @@ export const Navbar = ({ showRuler, toggleRuler }: NavbarProps) => {
 			</div>
 			<div className="flex items-center gap-3 pr-12 mr-1">
 				<Avatars />
-				<div className="flex items-center">
-					<Inbox />
-				</div>
+				<Inbox />
 				<OrganizationSwitcher
 					afterCreateOrganizationUrl="/"
 					afterLeaveOrganizationUrl="/"
