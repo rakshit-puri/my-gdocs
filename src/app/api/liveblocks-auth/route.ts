@@ -39,10 +39,16 @@ export async function POST(req: Request) {
 		return new Response("Forbidden", { status: 403 });
 	}
 
+	const name = user.fullName ?? user.primaryEmailAddress?.emailAddress ?? "Anonymous";
+	const hash = Array.from(name).reduce((acc, char) => acc + char.charCodeAt(0), 0);
+	const hue = hash % 360;
+	const color = `hsl(${hue}, 70%, 60%)`;
+
 	const session = liveblocks.prepareSession(user.id, {
 		userInfo: {
-			name: user.fullName ?? user.primaryEmailAddress?.emailAddress ?? "Anonymous",
+			name,
 			avatar: user.imageUrl,
+			color,
 		},
 	});
 
