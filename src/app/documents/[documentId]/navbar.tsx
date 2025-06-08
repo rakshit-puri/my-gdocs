@@ -37,6 +37,7 @@ import { BsFilePdf } from "react-icons/bs";
 import TableGridPicker from "@/components/table-grid-picker";
 import { useEditorStore } from "@/store/use-editor-store";
 import { UserButton, OrganizationSwitcher } from "@clerk/nextjs";
+import { Avatars } from "./avatars";
 
 interface NavbarProps {
 	showRuler: boolean;
@@ -265,6 +266,7 @@ export const Navbar = ({ showRuler, toggleRuler }: NavbarProps) => {
 				</div>
 			</div>
 			<div className="flex gap-3 items-center pl-6">
+				<Avatars />
 				<OrganizationSwitcher
 					afterCreateOrganizationUrl="/"
 					afterLeaveOrganizationUrl="/"
