@@ -15,7 +15,7 @@ args: {ids: v.array(v.id("documents"))},
         documents.push({id, name: "[Deleted]"});
       }
     }
-    
+
     return documents;
   },
 });
@@ -69,7 +69,11 @@ export const getDocuments = query({
 export const getDocumentById = query({
   args: {id: v.id("documents")},
   handler: async (ctx, { id }) => {
-    return await ctx.db.get(id);
+    const document = await ctx.db.get(id);
+    if(!document) {
+      throw new ConvexError("Document not found");
+    }
+    return document;
   },
 });
 
