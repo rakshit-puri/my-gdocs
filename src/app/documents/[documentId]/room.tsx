@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { Id } from "../../../../convex/_generated/dataModel";
 import { DEFAULT_MARGIN } from "@/constants/margin";
 
-type User = { id: string; name: string; avatar: string };
+type User = { id: string; name: string; avatar: string; color: string };
 
 export function Room({ children }: { children: ReactNode }) {
 	const params = useParams();

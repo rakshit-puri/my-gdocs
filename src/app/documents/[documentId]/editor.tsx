@@ -66,8 +66,8 @@ export const Editor = ({ showRuler, initialContent }: EditorProps) => {
 		immediatelyRender: false,
 		editorProps: {
 			attributes: {
-				style: `padding-left: ${leftMargin ?? DEFAULT_MARGIN}px; padding-right: ${rightMargin ?? DEFAULT_MARGIN}px`,
-				class: `focus:outline-none print:border-0 bg-white border border-[#C7C7C7] flex flex-col min-h-[1054px] w-[${PAGE_WIDTH}px] pt-10 pr-14 pb-10 cursor-text`,
+				style: `padding-left: ${leftMargin ?? DEFAULT_MARGIN}px; padding-right: ${rightMargin ?? DEFAULT_MARGIN}px; width: ${PAGE_WIDTH}px;`,
+				class: "focus:outline-none print:border-0 bg-white border border-[#C7C7C7] flex flex-col min-h-[1054px] pt-10 pr-14 pb-10 cursor-text",
 				spellCheck: "true",
 			},
 		},
@@ -119,7 +119,8 @@ export const Editor = ({ showRuler, initialContent }: EditorProps) => {
 		<div className="size-full overflow-x-auto bg-[#F9FBFD] px-4 print:p-0 print:bg-white print:overflow-visible">
 			{showRuler && <Ruler />}
 			<div
-				className={`min-w-max flex justify-center w-[${PAGE_WIDTH}px] py-4 print:py-0 mx-auto print:w-full print:min-w-0`}
+				className="min-w-max flex justify-center py-4 print:py-0 mx-auto print:w-full print:min-w-0"
+				style={{ width: `${PAGE_WIDTH}px` }}
 			>
 				<EditorContent editor={editor} />
 				<ClientSideSuspense fallback={null}>
