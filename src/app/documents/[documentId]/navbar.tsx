@@ -67,10 +67,6 @@ export const Navbar = ({ showRuler, toggleRuler, data, setLoading }: NavbarProps
 		}
 	}, [data, router, setLoading]);
 
-	if (!data) {
-		return null;
-	}
-
 	const onNewDocument = () => {
 		create({
 			title: "Untitled Document",
@@ -140,7 +136,11 @@ export const Navbar = ({ showRuler, toggleRuler, data, setLoading }: NavbarProps
 					<Image src="/icon.svg" alt="Logo" width={36} height={36} />
 				</button>
 				<div className="flex flex-col">
-					<DocumentInput title={data.title} id={data._id} />
+					{data ? (
+						<DocumentInput title={data.title} id={data._id} />
+					) : (
+						<span className="text-muted-foreground px-2 py-1">Document Deleted</span>
+					)}
 					<div className="flex">
 						<Menubar className="border-none bg-transparent shadow-none h-auto p-0">
 							<MenubarMenu>
@@ -177,24 +177,28 @@ export const Navbar = ({ showRuler, toggleRuler, data, setLoading }: NavbarProps
 										New Document
 									</MenubarItem>
 									<MenubarSeparator />
-									<RenameDialog documentId={data._id} initialTitle={data.title}>
-										<MenubarItem
-											onClick={(e) => e.stopPropagation()}
-											onSelect={(e) => e.preventDefault()}
-										>
-											<FilePenIcon className="size-4 mr-2" />
-											Rename
-										</MenubarItem>
-									</RenameDialog>
-									<RemoveDialog documentId={data._id}>
-										<MenubarItem
-											onClick={(e) => e.stopPropagation()}
-											onSelect={(e) => e.preventDefault()}
-										>
-											<Trash className="size-4 mr-2" />
-											Remove
-										</MenubarItem>
-									</RemoveDialog>
+									{data && (
+										<>
+											<RenameDialog documentId={data._id} initialTitle={data.title}>
+												<MenubarItem
+													onClick={(e) => e.stopPropagation()}
+													onSelect={(e) => e.preventDefault()}
+												>
+													<FilePenIcon className="size-4 mr-2" />
+													Rename
+												</MenubarItem>
+											</RenameDialog>
+											<RemoveDialog documentId={data._id}>
+												<MenubarItem
+													onClick={(e) => e.stopPropagation()}
+													onSelect={(e) => e.preventDefault()}
+												>
+													<Trash className="size-4 mr-2" />
+													Remove
+												</MenubarItem>
+											</RemoveDialog>
+										</>
+									)}
 									<MenubarSeparator />
 									<MenubarItem onClick={() => window.print()}>
 										<PrinterIcon className="size-4 mr-2" />

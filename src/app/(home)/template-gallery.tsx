@@ -8,7 +8,11 @@ import { useState } from "react";
 import { useMutation } from "convex/react";
 import { toast } from "sonner";
 
-export const TemplateGallery = () => {
+interface TemplateGalleryProps {
+	setLoading: (value: boolean) => void;
+}
+
+export const TemplateGallery = ({ setLoading }: TemplateGalleryProps) => {
 	const router = useRouter();
 	const create = useMutation(api.documents.createDocument);
 	const [isCreating, setIsCreating] = useState(false);
@@ -20,6 +24,7 @@ export const TemplateGallery = () => {
 			.then((documentId) => {
 				toast.success("Document created");
 				router.push(`/documents/${documentId}`);
+				setLoading(true);
 			})
 			.finally(() => setIsCreating(false));
 	};

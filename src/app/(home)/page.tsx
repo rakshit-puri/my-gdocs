@@ -30,7 +30,7 @@ const Home = () => {
 				<Navbar />
 			</div>
 			<div className="mt-16">
-				<TemplateGallery />
+				<TemplateGallery setLoading={setLoading} />
 				<DocumentsTable documents={results} status={status} loadMore={loadMore} setLoading={setLoading} />
 			</div>
 		</div>
