@@ -10,13 +10,14 @@ interface DocumentsTableProps {
 	documents: Doc<"documents">[] | undefined;
 	status: PaginationStatus;
 	loadMore: (numItems: number) => void;
+	setLoading: (value: boolean) => void;
 }
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { LoaderIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export const DocumentsTable = ({ documents, status, loadMore }: DocumentsTableProps) => {
+export const DocumentsTable = ({ documents, status, loadMore, setLoading }: DocumentsTableProps) => {
 	return (
 		<div className="max-w-screen-xl mx-auto px-16 py-6 flex flex-col gap-5">
 			{documents === undefined ? (
@@ -44,7 +45,7 @@ export const DocumentsTable = ({ documents, status, loadMore }: DocumentsTablePr
 					) : (
 						<TableBody>
 							{documents.map((document) => (
-								<DocumentRow key={document._id} document={document} />
+								<DocumentRow key={document._id} document={document} setLoading={setLoading} />
 							))}
 						</TableBody>
 					)}

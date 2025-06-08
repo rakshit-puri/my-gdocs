@@ -22,7 +22,7 @@ import { FontSize } from "@/extensions/font-size";
 import { LineHeight } from "@/extensions/line-height";
 import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
 import { Threads } from "./threads";
-import { useStorage } from "@liveblocks/react/suspense";
+import { useStorage, ClientSideSuspense } from "@liveblocks/react/suspense";
 
 const DEFAULT_MARGIN = 56;
 
@@ -120,7 +120,9 @@ export const Editor = ({ showRuler, initialContent }: EditorProps) => {
 			{showRuler && <Ruler />}
 			<div className="min-w-max flex justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0">
 				<EditorContent editor={editor} />
-				<Threads editor={editor} />
+				<ClientSideSuspense fallback={null}>
+					<Threads editor={editor} />
+				</ClientSideSuspense>
 			</div>
 		</div>
 	);

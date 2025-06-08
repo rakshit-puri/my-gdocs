@@ -2,21 +2,27 @@
 
 import { Navbar } from "./navbar";
 import { TemplateGallery } from "./template-gallery";
+import { FullScreenLoader } from "@/components/full-screen-loader";
 import { usePaginatedQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { DocumentsTable } from "./documents-table";
 import { useSearchParam } from "@/hooks/use-search-param";
+import { useState } from "react";
 
 const PAGE_SIZE = 5;
 
 const Home = () => {
 	const [search] = useSearchParam("search");
-
+	const [loading, setLoading] = useState(false);
 	const {
 		results = [],
 		status,
 		loadMore,
 	} = usePaginatedQuery(api.documents.getDocuments, { search }, { initialNumItems: PAGE_SIZE });
+
+	if (loading) {
+		return <FullScreenLoader label="Loading Document..." />;
+	}
 
 	return (
 		<div className="flex flex-col min-h-screen">
@@ -25,7 +31,7 @@ const Home = () => {
 			</div>
 			<div className="mt-16">
 				<TemplateGallery />
-				<DocumentsTable documents={results} status={status} loadMore={loadMore} />
+				<DocumentsTable documents={results} status={status} loadMore={loadMore} setLoading={setLoading} />
 			</div>
 		</div>
 	);

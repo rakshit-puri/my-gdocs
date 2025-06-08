@@ -46,7 +46,8 @@ import { RenameDialog } from "@/components/rename-dialog";
 import { Doc } from "../../../../convex/_generated/dataModel";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { FullScreenLoader } from "@/components/full-screen-loader";
 
 interface NavbarProps {
 	showRuler: boolean;
@@ -55,6 +56,7 @@ interface NavbarProps {
 }
 
 export const Navbar = ({ showRuler, toggleRuler, data }: NavbarProps) => {
+	const [loading, setLoading] = useState(false);
 	const router = useRouter();
 	const { editor } = useEditorStore();
 	const chain = () => editor?.chain().focus();
@@ -62,12 +64,17 @@ export const Navbar = ({ showRuler, toggleRuler, data }: NavbarProps) => {
 	const create = useMutation(api.documents.createDocument);
 	useEffect(() => {
 		if (data == null) {
+			setLoading(true);
 			router.push("/");
 		}
 	}, [data, router]);
 
 	if (!data) {
 		return null;
+	}
+
+	if (loading) {
+		return <FullScreenLoader label="Loading..." />;
 	}
 
 	const onNewDocument = () => {
@@ -127,9 +134,17 @@ export const Navbar = ({ showRuler, toggleRuler, data }: NavbarProps) => {
 	return (
 		<nav className="flex items-center justify-between h-full w-screen">
 			<div className="flex gap-3 items-center">
-				<Link href="/">
+				<button
+					type="button"
+					onClick={() => {
+						setLoading(true);
+						router.push("/");
+					}}
+					className="p-0 border-0 bg-transparent"
+					aria-label="Go to home"
+				>
 					<Image src="/icon.svg" alt="Logo" width={36} height={36} />
-				</Link>
+				</button>
 				<div className="flex flex-col">
 					<DocumentInput title={data.title} id={data._id} />
 					<div className="flex">
