@@ -2,6 +2,10 @@
 
 This is a collaborative document editing app built with [Next.js](https://nextjs.org), powered by [Convex](https://convex.dev) for real-time backend data and [Clerk](https://clerk.com) for authentication. The app enables multiple users to edit documents together in real time, making it ideal for teams and individuals who need seamless, collaborative text editing.
 
+## Try it out
+
+[MyDocs](https://my-docs-blue.vercel.app/)
+
 ## Features
 
 - ✍️ **Collaborative Text Editing:** Multiple users can edit documents simultaneously with real-time updates.
@@ -43,15 +47,3 @@ Create a `.env.local` file and set the following environment variables:
 - `src/` – Main application source code.
 - `convex/` – Convex backend functions and schema.
 - `public/` – Static assets and SVG icons.
-
-## Learn More
-
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Convex Documentation](https://docs.convex.dev)
-- [Clerk Documentation](https://clerk.com/docs)
-
-## Deploy
-
-The easiest way to deploy your Next.js app is with [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
-
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
