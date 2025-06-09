@@ -1,6 +1,7 @@
 "use server";
 
-import { auth, clerkClient } from "@clerk/nextjs/server";
+import { clerkClient } from "@clerk/nextjs/server";
+import { getCachedSession } from "@/lib/auth";
 import { ConvexHttpClient } from "convex/browser";
 import { Id } from "../../../../convex/_generated/dataModel";
 import { api } from "../../../../convex/_generated/api";
@@ -12,7 +13,7 @@ export async function getDocuments(ids: Id<"documents">[]) {
 }
 
 export async function getUsers() {
-    const { sessionClaims } = await auth();
+    const { sessionClaims } = await getCachedSession();
     const clerk = await clerkClient();
 
     const orgId = (sessionClaims?.o as { id: string })?.id;
