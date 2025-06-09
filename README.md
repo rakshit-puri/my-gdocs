@@ -9,10 +9,7 @@ This is a collaborative document editing app built with [Next.js](https://nextjs
 [MyDocs](https://my-docs-blue.vercel.app/)
 
 ## Features
-
-* ✍️ **Collaborative Text Editing:** Multiple users can edit documents simultaneously with real-time updates.
-* 🔒 **Authentication:** Secure sign-in and user management with Clerk.
-* ⚡ **Realtime Backend:** Uses Convex for instant data sync and storage.
+  
 * 🖼️ **Real-time Collaboration UI:** See cursors and edits live across users. 
 
 ![Real-time Collaboration](screenshots/Real-time%20Collaboration%20Feature.png)
@@ -24,6 +21,7 @@ This is a collaborative document editing app built with [Next.js](https://nextjs
 ![Comments](screenshots/Comment%20Feature.png)
 
 * 📑 **Organisation & Personal Sharing Modes:** Switch between personal and team document spaces.
+  
 ![My Docs](screenshots/Organisation%20and%20Personal%20Sharing%20Modes.png) 
 
 
