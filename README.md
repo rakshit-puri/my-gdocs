@@ -1,6 +1,6 @@
 # MyDocs
 
-This is a collaborative document editing app built with [Next.js](https://nextjs.org), powered by [Convex](https://convex.dev) for real-time backend data and [Clerk](https://clerk.com) for authentication. The app enables multiple users to edit documents together in real time, making it ideal for teams and individuals who need seamless, collaborative text editing.
+This is a collaborative document editing app built with [Next.js](https://nextjs.org), powered by [Convex](https://convex.dev) for real-time backend data and [Clerk](https://clerk.com) for authentication. The app enables multiple users to edit documents together in real time, making it ideal for teams (organisation mode) and individuals (personal mode) who need seamless, collaborative text editing.
 
 ## Try it out
 
