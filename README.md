@@ -1,5 +1,7 @@
 # MyDocs
 
+![Home](screenshots/Home.png)
+
 This is a collaborative document editing app built with [Next.js](https://nextjs.org), powered by [Convex](https://convex.dev) for real-time backend data and [Clerk](https://clerk.com) for authentication. The app enables multiple users to edit documents together in real time, making it ideal for teams (organisation mode) and individuals (personal mode) who need seamless, collaborative text editing.
 
 ## Try it out
@@ -8,10 +10,22 @@ This is a collaborative document editing app built with [Next.js](https://nextjs
 
 ## Features
 
-- ✍️ **Collaborative Text Editing:** Multiple users can edit documents simultaneously with real-time updates.
-- 🔒 **Authentication:** Secure sign-in and user management with Clerk.
-- ⚡ **Realtime Backend:** Uses Convex for instant data sync and storage.
-- 🖥️ **Modern UI:** Built with Next.js and Tailwind CSS for a fast, responsive experience.
+* ✍️ **Collaborative Text Editing:** Multiple users can edit documents simultaneously with real-time updates.
+* 🔒 **Authentication:** Secure sign-in and user management with Clerk.
+* ⚡ **Realtime Backend:** Uses Convex for instant data sync and storage.
+* 🖼️ **Real-time Collaboration UI:** See cursors and edits live across users. 
+
+![Real-time Collaboration](screenshots/Real-time%20Collaboration%20Feature.png)
+
+* 🔔 **Comments & Notifications:** Inline comments with mention notifications.
+
+![Comment Notification Feature](screenshots/Comment%20Notification%20Feature.png)
+
+![Comments](screenshots/Comment%20Feature.png)
+
+* 📑 **Organisation & Personal Sharing Modes:** Switch between personal and team document spaces.
+![My Docs](screenshots/Organisation%20and%20Personal%20Sharing%20Modes.png) 
+
 
 ## Getting Started
 
@@ -39,11 +53,11 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 
 Create a `.env.local` file and set the following environment variables:
 
-- `NEXT_PUBLIC_CONVEX_URL` – Your Convex deployment URL.
-- Clerk environment variables as required by [Clerk's Next.js integration](https://clerk.com/docs/quickstarts/nextjs).
+* `NEXT_PUBLIC_CONVEX_URL` – Your Convex deployment URL.
+* Clerk environment variables as required by [Clerk's Next.js integration](https://clerk.com/docs/quickstarts/nextjs).
 
 ## Project Structure
 
-- `src/` – Main application source code.
-- `convex/` – Convex backend functions and schema.
-- `public/` – Static assets and SVG icons.
+* `src/` – Main application source code.
+* `convex/` – Convex backend functions and schema.
+* `public/` – Static assets and SVG icons.
